@@ -17,6 +17,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->date('birth_date');
+            $table->string('address');
+            $table->string('phone', 11);
+            $table->string('CPF', 11)->unique();
+            $table->enum('user_type', ['adm', 'patient', 'doctor'])->default('patient')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
