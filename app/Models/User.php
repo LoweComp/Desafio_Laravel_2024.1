@@ -24,7 +24,7 @@ class User extends Authenticatable
         'birth_date',
         'address',
         'phone',
-        'CPF',
+        'cpf',
         'user_type'
     ];
 

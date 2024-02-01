@@ -5,21 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class HealthPlan extends Model
+class Surgery extends Model
 {
-
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'description',
-        'discount',
-        'patient_id'
+        'start',
+        'end',
+        'value',
+        'patient_id',
+        'doctor_id'
     ];
 
-    public function patient():BelongsTo
+    public function doctor()
+    {
+        return $this->belongsTo(Doctor::class);
+    }
+
+    public function patient()
     {
         return $this->belongsTo(Patient::class);
     }
-}
 
+}
