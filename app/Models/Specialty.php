@@ -11,8 +11,7 @@ class Specialty extends Model
     protected $fillable = [
         'name',
         'description',
-        'value',
-        'doctor_id'
+        'value'
     ];
 
     public function doctor()

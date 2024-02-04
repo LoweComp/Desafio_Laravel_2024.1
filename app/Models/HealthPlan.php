@@ -14,7 +14,6 @@ class HealthPlan extends Model
         'name',
         'description',
         'discount',
-        'patient_id'
     ];
 
     public function patient():BelongsTo

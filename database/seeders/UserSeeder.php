@@ -63,7 +63,7 @@ class UserSeeder extends Seeder
             'user_type' => 'adm'
         ]);
 
-        User::factory()->count(50)->create();
+        //User::factory()->count(50)->create();
 
     }
 
