@@ -13,11 +13,19 @@ return new class extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->date('birth_date');
+            $table->string('address');
+            $table->string('phone', 11);
+            $table->string('cpf', 11)->unique();
             $table->string('photo');
             $table->string('working_period');
             $table->string('CRM');
-            $table->foreignId('user_id')->constrained();
             $table->foreignId('specialty_id')->constrained();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

@@ -13,10 +13,18 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->date('birth_date');
+            $table->string('address');
+            $table->string('phone', 11);
+            $table->string('cpf', 11)->unique();
             $table->string('blood_type');
             $table->string('photo');
-            $table->foreignId('user_id')->constrained();
             $table->foreignId('health_plan_id')->nullable()->constrained();
+            $table->rememberToken();
             $table->timestamps();
         });
     }
