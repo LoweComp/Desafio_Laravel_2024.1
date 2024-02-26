@@ -13,9 +13,31 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+//Todo Redirecionar user para dashboard que tem acesso
 Route::get('/', function () {
     return redirect(route('dashboard'));
+});
+
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::get('/test', function () {
+    return view('test');
+});
+
+Route::resource('healthplan', \App\Http\Controllers\HealthPlanController::class);
+
+Route::middleware('patient')->group(function () {
+    Route::get('/dashboardPatient', function () {
+        echo "dashboard do paciente aqui";
+    })->name('patient.dashboard');
+});
+
+Route::middleware('doctor')->group(function () {
+    Route::get('/dashboardDoctor', function () {
+        echo "dashboard do doutor aqui";
+    })->name('doctor.dashboard');
 });
 
 Route::get('/dashboard', function () {

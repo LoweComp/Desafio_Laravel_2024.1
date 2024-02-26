@@ -43,6 +43,15 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+
+        'patient' => [
+            \App\Http\Middleware\PatientAuthenticator::class,
+        ],
+
+        'doctor' => [
+            \App\Http\Middleware\DoctorAuthenticator::class,
+        ]
+
     ];
 
     /**

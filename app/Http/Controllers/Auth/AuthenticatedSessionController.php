@@ -25,11 +25,24 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+        /*$request->authenticate();
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended(RouteServiceProvider::HOME);*/
+
+        $credentials = $request->only('email', 'password');
+
+        if(Auth::attempt($credentials)){
+            return redirect()->route('dashboard');
+        } else if(Auth::guard('patient')->attempt($credentials)){
+            return redirect()->route('patient.dashboard');
+        } else if(Auth::guard('doctor')->attempt($credentials)){
+            return redirect()->route('doctor.dashboard');
+        }
+
+        return redirect()->route('login');
+
     }
 
     /**
@@ -43,6 +56,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }
