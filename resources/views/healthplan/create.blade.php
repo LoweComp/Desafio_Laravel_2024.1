@@ -1,23 +1,44 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.adminlte', [
+    'title' => "Plano de saúde",
+    'header' => "Adicionando plano de saúde",
+])
 
-<form action="{{route('healthplan.store')}}" method="POST">
-    @csrf
-    <input name = 'name'>
-    <input name = 'description'>
-    <input name = 'discount'>
+@section('slot')
+    <div class="col-md-12">
 
-    <button type="submit"> Salvar </button>
+        <div class="card card-dark">
+            <div class="card-header">
+                <h3 class="card-title">Informações de cadastro</h3>
+            </div>
 
-</form>
+            <form action="{{route('healthplan.store')}}" method="POST">
+                @csrf
 
-</body>
-</html>
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <label>Nome</label>
+                        <input name="name" type="text" class="form-control" value="{{$input['name'] ?? ""}}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Descrição</label>
+                        <input name="description" type="text" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Desconto</label>
+                        <input name="discount" type="text" class="form-control" required>
+                    </div>
+
+                </div>
+
+                <div class="card-footer text-md-right">
+                    <a  href="{{url()->previous()}}" disabled type="submit" class="btn btn-secondary">Voltar</a>
+                    <button type="submit" class="btn btn-primary">Adicionar</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+@endsection

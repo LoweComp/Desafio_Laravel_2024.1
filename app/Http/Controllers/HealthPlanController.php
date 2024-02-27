@@ -52,9 +52,7 @@ class HealthPlanController extends Controller
      */
     public function edit(string $id)
     {
-        return view('healthplan.edit', ['healthplan' =>
-            HealthPlan::find($id)
-        ]);
+        return view('healthplan.edit', ['healthPlan' => HealthPlan::find($id) ]);
     }
 
     /**

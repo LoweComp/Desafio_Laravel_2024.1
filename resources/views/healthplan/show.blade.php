@@ -1,16 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalhes do Plano de Saúde</title>
-</head>
-<body>
-<div>
-    <p><strong>Nome:</strong> {{ $healthPlan->name }}</p>
-    <p><strong>Descrição:</strong> {{ $healthPlan->description }}</p>
-    <p><strong>Desconto:</strong> {{ $healthPlan->discount }}</p>
-</div>
-</body>
-</html>
+@extends('layouts.adminlte', [
+    'title' => "Planos de saúde",
+    'header' => "Visualizando plano de saúde",
+])
 
+@section('slot')
+    <div class="col-md-12">
+
+        <div class="card card-dark">
+            <div class="card-header">
+                <h3 class="card-title">Informações cadastradas</h3>
+            </div>
+
+            <form>
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <label>Nome</label>
+                        <input disabled name="name" type="text" class="form-control" value="{{$healthPlan->name}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Descrição</label>
+                        <input disabled name="email" type="email" class="form-control" value="{{$healthPlan->description}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Desconto</label>
+                        <input disabled name="phone" type="text" class="form-control" value="{{$healthPlan->discount}}">
+                    </div>
+
+                </div>
+
+                <div class="card-footer">
+                    <a  href="{{url()->previous()}}" disabled type="submit" class="btn btn-secondary">Voltar</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+@endsection
