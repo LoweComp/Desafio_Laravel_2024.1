@@ -27,6 +27,7 @@ Route::get('/test', function () {
 });
 
 Route::resource('healthplan', \App\Http\Controllers\HealthPlanController::class);
+Route::resource('specialty', \App\Http\Controllers\SpecialtyController::class);
 
 Route::middleware('patient')->group(function () {
     Route::get('/dashboardPatient', function () {
