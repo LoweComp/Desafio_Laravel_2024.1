@@ -11,16 +11,18 @@ class Doctor extends Authenticatable
     use HasFactory;
 
     protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'birth_date',
+        'address',
+        'phone',
+        'cpf',
         'photo',
         'working_period',
         'CRM',
         'specialty_id'
     ];
-
-    public function users()
-    {
-        return $this->belongsTo(User::class);
-    }
 
     public function specialty()
     {

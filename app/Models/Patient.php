@@ -10,15 +10,17 @@ class Patient extends Authenticatable
     use HasFactory;
 
     protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'birth_date',
+        'address',
+        'phone',
+        'cpf',
         'blood_type',
         'photo',
         'health_plan'
     ];
-
-    public function users()
-    {
-        return $this->belongsTo(User::class);
-    }
 
     public function healthplans()
     {

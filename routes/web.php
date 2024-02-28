@@ -35,6 +35,8 @@ Route::middleware('patient')->group(function () {
     })->name('patient.dashboard');
 });
 
+Route::middleware('doctor')->resource('doctor', \App\Http\Controllers\DoctorController::class);
+
 Route::middleware('doctor')->group(function () {
     Route::get('/dashboardDoctor', function () {
         echo "dashboard do doutor aqui";
