@@ -19,10 +19,10 @@ class Patient extends Authenticatable
         'cpf',
         'blood_type',
         'photo',
-        'health_plan'
+        'health_plan_id'
     ];
 
-    public function healthplans()
+    public function healthplan()
     {
         return $this->hasOne(HealthPlan::class);
     }

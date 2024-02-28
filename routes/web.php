@@ -29,6 +29,8 @@ Route::get('/test', function () {
 Route::resource('healthplan', \App\Http\Controllers\HealthPlanController::class);
 Route::resource('specialty', \App\Http\Controllers\SpecialtyController::class);
 
+Route::middleware('patient')->resource('patient', \App\Http\Controllers\DoctorController::class);
+
 Route::middleware('patient')->group(function () {
     Route::get('/dashboardPatient', function () {
         echo "dashboard do paciente aqui";
