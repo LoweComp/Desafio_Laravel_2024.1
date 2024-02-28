@@ -22,9 +22,11 @@ class DoctorController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
     public function create()
     {
-        return view('doctor.create');
+        $specialties = Specialty::all();
+        return view('doctor.create', ['specialties' => $specialties]);
     }
 
     /**
@@ -42,7 +44,6 @@ class DoctorController extends Controller
             'address' => 'required',
             'phone' => 'required',
             'cpf' => 'required|unique:doctors',
-            'photo' => 'required',
             'working_period' => 'required',
             'CRM' => 'required',
             */
@@ -59,7 +60,7 @@ class DoctorController extends Controller
         $doctor->cpf = $request->input('cpf');
         $doctor->photo = $request->input('photo');
         $doctor->working_period = $request->input('working_period');
-        $doctor->CRM = $request->input('CRM');
+        $doctor->CRM = $request->input('crm');
         $doctor->specialty_id = $request->input('specialty_id');
         $doctor->save();
 

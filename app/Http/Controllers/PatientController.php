@@ -34,13 +34,12 @@ class PatientController extends Controller
         $validatedData = $request->validate([
             /*
             'name' => 'required',
-            'email' => 'required|email|unique:doctors',
+            'email' => 'required|email|unique:patients',
             'password' => 'required|min:6',
             'birth_date' => 'required|date',
             'address' => 'required',
             'phone' => 'required',
             'cpf' => 'required|unique:doctors',
-            'photo' => 'required',
             */
             'health_plan_id' => 'required|exists:health_plan,id',
         ]);
