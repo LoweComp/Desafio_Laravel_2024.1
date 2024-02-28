@@ -73,7 +73,8 @@ class DoctorController extends Controller
     public function show(string $id)
     {
         $doctor = Doctor::findOrFail($id);
-        return view('doctor.show', ['doctor' => $doctor]);
+        $specialties = Specialty::all();
+        return view('doctor.show', compact('doctor', 'specialties'));
     }
 
     /**
