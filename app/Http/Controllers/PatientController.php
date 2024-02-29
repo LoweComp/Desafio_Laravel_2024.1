@@ -45,7 +45,7 @@ class PatientController extends Controller
             'cpf' => 'required|unique:doctors',
             */
             'photo' => 'nullable',
-            'health_plan_id' => 'required|exists:health_plan,id',
+            'health_plan_id' => 'required|exists:health_plans,id',
         ]);
 
         $patient = new Patient();
@@ -101,7 +101,7 @@ class PatientController extends Controller
             'cpf' => 'required|unique:doctors',
             */
             'photo' => 'nullable',
-            'health_plan_id' => 'required|exists:health_plan,id',
+            'health_plan_id' => 'required|exists:health_plans,id',
         ]);
 
         $patient = Patient::find($id);
