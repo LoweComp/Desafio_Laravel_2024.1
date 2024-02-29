@@ -59,7 +59,11 @@
 
                     <div class="form-group">
                         <label>Período</label>
-                        <input name="working_period" type="text" class="form-control" value="{{$doctor->working_period}}">
+                        <select name="working_period" class="form-control" required>
+                            <option value="Diurno">Diurno</option>
+                            <option value="Noturno">Noturno</option>
+                            <option value="Integral">Integral</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -68,8 +72,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Especialidade</label>
-                        <input name="specialty_id" type="text" class="form-control" value="{{\App\Models\Specialty::find($doctor->specialty_id)->name}}">
+                        <label for="specialty_id">Especialidade</label>
+                        <select name="specialty_id" class="form-control" required>
+                            <option value="">Selecione uma especialidade</option>
+                            @foreach($specialties as $specialty)
+                                <option value="{{ $specialty->id }}">{{ $specialty->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                 </div>

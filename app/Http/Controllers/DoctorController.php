@@ -61,7 +61,7 @@ class DoctorController extends Controller
         $doctor->cpf = $request->input('cpf');
         $doctor->photo = $request->input('photo');
         $doctor->working_period = $request->input('working_period');
-        $doctor->CRM = $request->input('crm');
+        $doctor->crm = $request->input('crm');
         $doctor->specialty_id = $request->input('specialty_id');
         $doctor->save();
 
@@ -122,7 +122,7 @@ class DoctorController extends Controller
             'cpf' => $request->cpf,
             'photo' => $request->photo,
             'working_period' => $request->working_period,
-            'CRM' => $request->CRM,
+            'CRM' => $request->crm,
             'specialty_id' => $request->specialty_id,
         ]);
 
