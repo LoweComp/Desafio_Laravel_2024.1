@@ -47,6 +47,7 @@ class DoctorController extends Controller
             'working_period' => 'required',
             'CRM' => 'required',
             */
+            'photo' => 'nullable',
             'specialty_id' => 'required|exists:specialties,id',
         ]);
 
@@ -82,7 +83,9 @@ class DoctorController extends Controller
      */
     public function edit(string $id)
     {
-        return view('doctor.edit', [ 'doctor' => Doctor::find($id) ]);
+        $doctor = Doctor::findOrFail($id);
+        $specialties = Specialty::all();
+        return view('doctor.edit', compact('doctor', 'specialties'));
     }
 
     /**
@@ -104,24 +107,26 @@ class DoctorController extends Controller
             'working_period' => 'required|string|max:255',
             'CRM' => 'required|string|max:255|unique:doctors,CRM,' . $doctor->id,
             */
+            'photo' => 'nullable',
             'specialty_id' => 'required|exists:specialties,id',
         ]);
 
         $doctor = Doctor::find($id);
         $doctor->update([
-            'name' => $request->input('name'),
+            'name' => $request->name,
+            'email' => $request->email,
             'password' => $request->password ? Hash::make($request->password) : $doctor->password,
             'birth_date' => $request->birth_date,
             'address' => $request->address,
             'phone' => $request->phone,
             'cpf' => $request->cpf,
-            'photo' => $request->photo ? $request->photo->store('photos', 'public') : $doctor->photo,
+            'photo' => $request->photo,
             'working_period' => $request->working_period,
             'CRM' => $request->CRM,
             'specialty_id' => $request->specialty_id,
         ]);
 
-        return redirect(route('doctor.index'));
+        return redirect(route('doctor.index'))->with('success', 'Médico atualizado com sucesso!');
     }
 
     /**

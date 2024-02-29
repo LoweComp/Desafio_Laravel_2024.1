@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HealthPlan;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -13,8 +14,9 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = Patient::with('healthplan')->get();
-        return view('patient.index', ['patients' => $patients]);
+        $patients = Patient::all();
+        $healthplans = HealthPlan::all();
+        return view('patient.index', compact('patients', 'healthplans'));
     }
 
     /**
@@ -22,7 +24,8 @@ class PatientController extends Controller
      */
     public function create()
     {
-        return view('patient.create');
+        $healthplans = HealthPlan::all();
+        return view('patient.create', ['healthplans' => $healthplans]);
     }
 
     /**
@@ -41,6 +44,7 @@ class PatientController extends Controller
             'phone' => 'required',
             'cpf' => 'required|unique:doctors',
             */
+            'photo' => 'nullable',
             'health_plan_id' => 'required|exists:health_plan,id',
         ]);
 
@@ -58,7 +62,6 @@ class PatientController extends Controller
         $patient->save();
 
         return redirect(route('patient.index'))->with('success', 'Paciente criado com sucesso!');
-
     }
 
     /**
@@ -67,7 +70,8 @@ class PatientController extends Controller
     public function show(string $id)
     {
         $patient = Patient::findOrFail($id);
-        return view('patient.show', ['patient' => $patient]);
+        $healthplans = HealthPlan::all();
+        return view('patient.show', compact('patient', 'healthplans'));
     }
 
     /**
@@ -75,7 +79,9 @@ class PatientController extends Controller
      */
     public function edit(string $id)
     {
-        return view('patient.edit', [ 'patient' => Patient::find($id) ]);
+        $patient = Patient::findOrFail($id);
+        $healthplans = HealthPlan::all();
+        return view('patient.edit', compact('patient', 'healthplans'));
     }
 
     /**
@@ -93,20 +99,22 @@ class PatientController extends Controller
             'address' => 'required',
             'phone' => 'required',
             'cpf' => 'required|unique:doctors',
-            'photo' => 'required',
             */
+            'photo' => 'nullable',
             'health_plan_id' => 'required|exists:health_plan,id',
         ]);
 
         $patient = Patient::find($id);
         $patient->update([
             'name' => $request->input('name'),
+            'email' => $request->email,
             'password' => $request->password ? Hash::make($request->password) : $patient->password,
             'birth_date' => $request->birth_date,
             'address' => $request->address,
             'phone' => $request->phone,
             'cpf' => $request->cpf,
-            'photo' => $request->photo ? $request->photo->store('photos', 'public') : $patient->photo,
+            /*'photo' => $request->photo ? $request->photo->store('photos', 'public') : $patient->photo,*/
+            'photo' => $request->photo,
             'blood_type' => $request->blood_type,
             'health_plan_id' => $request->health_plan_id
         ]);
