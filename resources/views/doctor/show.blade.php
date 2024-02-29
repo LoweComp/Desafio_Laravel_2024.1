@@ -66,7 +66,7 @@
 
                     <div class="form-group">
                         <label>Especialidade</label>
-                        <input disabled name="crm" type="text" class="form-control" value="{{\App\Models\Specialty::find($doctor->specialty_id)->name}}">
+                        <input disabled name="specialty_id" type="text" class="form-control" value="{{\App\Models\Specialty::find($doctor->specialty_id)->name}}">
                     </div>
 
                 </div>
