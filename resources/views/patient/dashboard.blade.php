@@ -1,4 +1,4 @@
-@extends('layouts.adminlte', [
+@extends('layouts.adminlte3', [
     'title' => "Painel de controle",
     'header' => "Painel de controle"
 ])

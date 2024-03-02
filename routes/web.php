@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,26 +14,43 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-//Todo Redirecionar user para dashboard que tem acesso
+
 Route::get('/', function () {
     return redirect(route('dashboard'));
 });
 
+//Login
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
-Route::get('/test', function () {
-    return view('test');
-});
+//Email
+Route::get('/email', function () {
+    return view('mail.index');
+})->name('mail.index');
+Route::post('/email/send', [EmailController::class, 'send'])->name('mail.send');
 
+/*Route::get('/view-email', function () {
+    return new \App\Mail\AvisaPaciente();
+})->name('view.email');
+*/
+
+//admin
 Route::resource('healthplan', \App\Http\Controllers\HealthPlanController::class);
 Route::resource('specialty', \App\Http\Controllers\SpecialtyController::class);
+
+Route::resource('surgery', \App\Http\Controllers\SurgeryController::class);
+
+Route::middleware('patient')->get('/surgery/create', [\App\Http\Controllers\SurgeryController::class, 'create'])->name('surgery.create');
+Route::middleware('patient')->post('/surgery/store', [\App\Http\Controllers\SurgeryController::class, 'store'])->name('surgery.store');
+Route::middleware('patient')->delete('/surgery/{surgery}', [\App\Http\Controllers\SurgeryController::class, 'destroy'])->name('surgery.destroy');
+
+
 Route::resource('patient', \App\Http\Controllers\PatientController::class);
 
 Route::middleware('patient')->group(function () {
     Route::get('/dashboardPatient', function () {
-        echo "dashboard do paciente aqui";
+        return view('patient.dashboard');
     })->name('patient.dashboard');
 });
 
@@ -40,7 +58,7 @@ Route::resource('doctor', \App\Http\Controllers\DoctorController::class);
 
 Route::middleware('doctor')->group(function () {
     Route::get('/dashboardDoctor', function () {
-        echo "dashboard do doutor aqui";
+        return view('doctor.dashboard');
     })->name('doctor.dashboard');
 });
 
