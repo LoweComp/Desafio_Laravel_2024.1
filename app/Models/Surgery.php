@@ -11,11 +11,22 @@ class Surgery extends Model
 
     protected $fillable = [
         'start',
-        'end',
         'value',
         'patient_id',
-        'doctor_id'
+        'doctor_id',
+        'specialty_id'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        //End Dinâmico
+        static::saving(function ($surgery) {
+            if (!empty($surgery->start)) {
+                $surgery->end = $surgery->start->copy()->addHours(2);
+            }
+        });
+    }
 
     public function doctor()
     {
@@ -25,6 +36,11 @@ class Surgery extends Model
     public function patient()
     {
         return $this->belongsTo(Patient::class);
+    }
+
+    public function specialty()
+    {
+        return $this->BelongsTo(Specialty::class);
     }
 
 }
