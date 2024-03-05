@@ -29,40 +29,41 @@ class SurgerySeeder extends Seeder
 
         // Horarios
 
-        $firstTime = Carbon::createFromTime(18, 0, 0);
+        $firstTime = Carbon::createFromTime(6, 0, 0);
 
-        $midTime = Carbon::createFromTime(20, 0, 0);
+        $midTime = Carbon::createFromTime(8, 0, 0);
 
-        $eveningTime = Carbon::createFromTime(22, 0, 0);
+        $finalTime = Carbon::createFromTime(10, 0, 0);
 
 
         // Cálculo do desconto
-        $patientId = 3; // ou qualquer outro id de paciente
+        $patientId = 4;
         $patient = Patient::find($patientId);
         $finalValue = $value * (1 - $patient->healthplan->discount);
 
         Surgery::create([
             'start' => $nextMonday->copy()->setTimeFrom($firstTime),
             'value' => $finalValue,
-            'patient_id' => 3,
-            'doctor_id' => 2,
+            'patient_id' => 4,
+            'doctor_id' => 10,
             'specialty_id' => 3,
         ]);
 
         Surgery::create([
             'start' => $nextTuesday->copy()->setTimeFrom($midTime),
             'value' => $finalValue,
-            'patient_id' => 3,
-            'doctor_id' => 2,
+            'patient_id' => 4,
+            'doctor_id' => 10,
             'specialty_id' => 3,
         ]);
 
         Surgery::create([
-            'start' => $nextWednesday->copy()->setTimeFrom($eveningTime),
+            'start' => $nextWednesday->copy()->setTimeFrom($finalTime),
             'value' => $finalValue,
-            'patient_id' => 3,
-            'doctor_id' => 2,
+            'patient_id' => 4,
+            'doctor_id' => 10,
             'specialty_id' => 3,
         ]);
     }
+    // !Populei os pacientes 3 e 4 & Doutores 3 e 10 com consultas (cirurgias)
 }

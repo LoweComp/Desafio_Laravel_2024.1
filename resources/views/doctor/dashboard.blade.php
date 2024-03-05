@@ -11,7 +11,7 @@
 
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3>30<sup style="font-size: 20px"></sup></h3>
+                    <h3>1.<sup style="font-size: 20px"></sup></h3>
                     <p>Consultas</p>
                 </div>
                 <div class="icon">
@@ -24,7 +24,7 @@
         <div class="col-lg-3 col-6">
             <div class="small-box bg-secondary">
                 <div class="inner">
-                    <h3>4<sup style="font-size: 20px"></sup></h3>
+                    <h3>2.<sup style="font-size: 20px"></sup></h3>
                     <p>Relatório</p>
                 </div>
                 <div class="icon">
@@ -37,13 +37,13 @@
         <div class="col-lg-3 col-6">
             <div class="small-box bg-warning">
                 <div class="inner">
-                    <h3>4</h3>
+                    <h3>3.</h3>
                     <p>Cadastro</p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-user"></i>
                 </div>
-                <a href="{{route('specialty.index')}}" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('doctor.editByID')}}" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 

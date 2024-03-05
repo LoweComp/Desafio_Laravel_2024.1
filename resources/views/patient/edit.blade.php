@@ -1,4 +1,4 @@
-@extends('layouts.adminlte3', [
+@extends('layouts.adminlte', [
     'title' => "Pacientes",
     'header' => "Editando Paciente",
 ])

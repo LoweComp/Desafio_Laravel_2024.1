@@ -162,6 +162,26 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="{{route("healthplan.index")}}" class="nav-link {{Request::is('dashboard') ? '' : '' }}">
+                            <i class="nav-icon far fa-calendar-alt"></i>
+                            <p>
+                                Planos
+                                <!--<span class="right badge badge-danger">New</span>-->
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{route("specialty.index")}}" class="nav-link {{Request::is('dashboard') ? '' : '' }}">
+                            <i class="nav-icon fas fa-th mr-1"></i>
+                            <p>
+                                Especialidades
+                                <!--<span class="right badge badge-danger">New</span>-->
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="{{route("mail.index")}}" class="nav-link {{Request::is('dashboard') ? '' : '' }}">
                             <i class="nav-icon fas fa-bullhorn"></i>
                             <p>

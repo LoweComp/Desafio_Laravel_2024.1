@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Doctor;
 use App\Models\Specialty;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
@@ -86,6 +87,13 @@ class DoctorController extends Controller
         $doctor = Doctor::findOrFail($id);
         $specialties = Specialty::all();
         return view('doctor.edit', compact('doctor', 'specialties'));
+    }
+
+    public function editByID()
+    {
+        $doctor = Auth::guard('doctor')->user();
+        $specialties = Specialty::all();
+        return view('doctor.editByID', ['specialties' => $specialties, 'doctor' => $doctor]);
     }
 
     /**

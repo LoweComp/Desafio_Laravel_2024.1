@@ -139,6 +139,15 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a href="{{route('surgery.indexDOC')}}" class="nav-link {{Request::is('doctor.dashboard') ? '' : '' }}">
+                            <i class="nav-icon fa fa-edit"></i>
+                            <p>
+                                Consultas
+                                <!--<span class="right badge badge-danger">New</span>-->
+                            </p>
+                        </a>
+                    </li>
 
                     <li class="nav-item">
                         <a href="{{route('pdf.index')}}" class="nav-link {{Request::is('doctor.dashboard') ? '' : '' }}">
@@ -150,19 +159,8 @@
                         </a>
                     </li>
 
-
                     <li class="nav-item">
-                        <a href="#" class="nav-link {{Request::is('doctor.dashboard') ? '' : '' }}">
-                            <i class="nav-icon fa fa-edit"></i>
-                            <p>
-                                Consultas
-                                <!--<span class="right badge badge-danger">New</span>-->
-                            </p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="#" class="nav-link {{Request::is('doctor.dashboard') ? '' : '' }}">
+                        <a href="{{route('doctor.editByID')}}" class="nav-link {{Request::is('doctor.dashboard') ? '' : '' }}">
                             <i class="nav-icon fas fa-user"></i>
                             <p>
                                 Cadastro
