@@ -44,7 +44,7 @@ Route::middleware('patient')->group(function () {
         return view('patient.dashboard');
     })->name('patient.dashboard');
     Route::resource('surgery', \App\Http\Controllers\SurgeryController::class);
-    Route::get('/patient/edit', [\App\Http\Controllers\PatientController::class, 'editByID'])->name('patient.editByID');
+    Route::get('/edit', [\App\Http\Controllers\PatientController::class, 'editByID'])->name('patient.editByID');
     Route::put('/patient/{id}', [\App\Http\Controllers\PatientController::class, 'updateByID'])->name('patient.updateByID');
 });
 

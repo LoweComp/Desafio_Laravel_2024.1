@@ -21,7 +21,6 @@ class PDFController extends Controller
         $specialties = Specialty::all();
         $patients = Patient::all();
         $healthplans = healthPlan::all();
-        echo "ALOU";
 
     $pdf = Pdf::loadView('pdf.index', compact('patients', 'surgeries', 'specialties', 'doctors'));
 

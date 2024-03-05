@@ -15,7 +15,7 @@
                     <p>Consultas</p>
                 </div>
                 <div class="icon">
-                    <i class="fa-solid fa-user-nurse"></i>
+                    <i class="fa fa-edit"></i>
                 </div>
                 <a href="{{route('surgery.index')}}" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -33,45 +33,6 @@
                     <i class="fas fa-user"></i>
                 </div>
                 <a href="{{route('patient.editByID')}}" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-6">
-            <div class="small-box bg-secondary">
-                <div class="inner">
-                    <h3>4<sup style="font-size: 20px"></sup></h3>
-                    <p>Planos de Saúde</p>
-                </div>
-                <div class="icon">
-                    <i class="fa-solid fa-heart"></i>
-                </div>
-                <a href="{{route('patient.dashboard')}}" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-6">
-            <div class="small-box bg-warning">
-                <div class="inner">
-                    <h3>4</h3>
-                    <p>Especialidades</p>
-                </div>
-                <div class="icon">
-                    <i class="fa-solid fa-clipboard"></i>
-                </div>
-                <a href="{{route('patient.dashboard')}}" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-6">
-            <div class="small-box bg-danger">
-                <div class="inner">
-                    <h3>1</h3>
-                    <p>Emails</p>
-                </div>
-                <div class="icon">
-                    <i class="fas fa-bullhorn"></i>
-                </div>
-                <a href="{{route('mail.index')}}" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
 

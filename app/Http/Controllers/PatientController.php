@@ -89,7 +89,7 @@ class PatientController extends Controller
     {
         $patient = Auth::guard('patient')->user();
         $healthplans = HealthPlan::all();
-        return view('patient.editByID', ['healthPlans' => $healthplans, 'patient' => $patient]);
+        return view('patient.editByID', ['healthplans' => $healthplans, 'patient' => $patient]);
     }
 
     /**

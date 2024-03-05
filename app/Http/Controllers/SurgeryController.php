@@ -32,7 +32,6 @@ class SurgeryController extends Controller
         $surgeries = Surgery::where('doctor_id', $doctorId)->get();
         $specialties = Specialty::all();
         $patients = Patient::all();
-        echo "ALOU";
         return view('surgery.indexDOC', compact('patients', 'surgeries', 'specialties', 'doctors'));
     }
 

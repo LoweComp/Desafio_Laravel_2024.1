@@ -76,15 +76,6 @@
                             <td>{{$surgery->end}}</td>
                             <td>{{$surgery->value}}</td>
                             <td>
-
-                                <a class="btn btn-primary" href="">
-                                    <i class="fa fa-eye"></i>
-                                </a>
-
-                                <a class="btn btn-warning" href="">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-
                                 <button onclick="fillModal('surgery/{{$surgery->id}}')" class="btn btn-danger" data-bs-toggle="modal" data-toggle="modal" data-target="#destroyModal">
                                     <i class="fa fa-trash"></i>
                                 </button>

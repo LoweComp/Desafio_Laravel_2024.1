@@ -163,9 +163,9 @@
 
                     <li class="nav-item">
                         <a href="#" class="nav-link {{Request::is('doctor.dashboard') ? '' : '' }}">
-                            <i class="nav-icon fas fa-bullhorn"></i>
+                            <i class="nav-icon fas fa-user"></i>
                             <p>
-                                Avisos
+                                Cadastro
                                 <!--<span class="right badge badge-danger">New</span>-->
                             </p>
                         </a>

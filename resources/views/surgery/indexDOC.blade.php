@@ -71,17 +71,6 @@
                             <td>{{$surgery->start}}</td>
                             <td>{{$surgery->end}}</td>
                             <td>{{$surgery->value}}</td>
-                            <td>
-
-                                <a class="btn btn-primary" href="">
-                                    <i class="fa fa-eye"></i>
-                                </a>
-
-                                <a class="btn btn-warning" href="">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-
-                            </td>
                         </tr>
                     @endforeach
                     </tbody>

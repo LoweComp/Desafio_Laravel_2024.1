@@ -22,23 +22,48 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="specialty_id">Tipo de Cirurgia</label>
+                        <select name="specialty_id" class="form-control" required>
+                            <option value="">Selecione uma Especialidade</option>
+                            @foreach($specialties as $specialty)
+                                <option value="{{ $specialty->id }}">{{ $specialty->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <script>
+                        //Objetivo era dinamicamente limitar os médicos à especialidade escolhida
+
+                        document.getElementById('specialty_id').addEventListener('change', function() {
+                            var specialtyId = this.value;
+
+                            // Ocultar todos
+                            var doctorOptions = document.querySelectorAll('#doctor_id option');
+                            doctorOptions.forEach(function(option) {
+                                option.style.display = 'none';
+                            });
+
+                            // Mostra apenas os médicos da especialidade
+                            var doctorsWithSpecialty = document.querySelectorAll('.specialty-' + specialtyId);
+                            doctorsWithSpecialty.forEach(function(option) {
+                                option.style.display = 'block';
+                            });
+                        });
+                    </script>
+
+                    <div class="form-group">
                         <label for="doctor_id">Médico(a) Responsável</label>
                         <select id="doctor_id" name="doctor_id" class="form-control" required>
                             <option value="">Selecione um Médico(a)</option>
                             @foreach($doctors as $doctor)
-                                <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
+                                <option class="doctor-option specialty-{{ $doctor->specialty_id }}" value="{{ $doctor->id }}">{{ $doctor->name }}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label>Especialidade da Cirurgia</label>
-                        <input disabled name="specialty_id" type="text" class="form-control" value="{{ $doctor->specialty->name }}" required>
-                    </div>
-
-                    <div class="form-group">
                         <label for="start">Data e Hora</label>
-                        <input name="start" type="datetime-local" class="form-control" required>
+                        <input id="start" name="start" type="datetime-local" class="form-control" required>
                     </div>
 
                     <div class="form-group">

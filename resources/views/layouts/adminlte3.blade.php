@@ -139,11 +139,9 @@
                         </a>
                     </li>
 
-
-
                     <li class="nav-item">
                         <a href="{{route('surgery.index')}}" class="nav-link {{Request::is('patient.dashboard') ? '' : '' }}">
-                            <i class="nav-icon fas fa-user"></i>
+                            <i class="nav-icon fa fa-edit"></i>
                             <p>
                                 Consultas
                                 <!--<span class="right badge badge-danger">New</span>-->
@@ -161,15 +159,6 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="#" class="nav-link {{Request::is('patient.dashboard') ? '' : '' }}">
-                            <i class="nav-icon fas fa-bullhorn"></i>
-                            <p>
-                                Avisos
-                                <!--<span class="right badge badge-danger">New</span>-->
-                            </p>
-                        </a>
-                    </li>
                 </ul>
             </nav>
 
