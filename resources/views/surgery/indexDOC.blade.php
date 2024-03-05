@@ -1,10 +1,6 @@
-@extends('layouts.adminlte3', [
-    'title' => "Pacientes",
-    'header' => "Lista de Pacientes",
-    'addButton' => [
-        'title' => "Adicionar Paciente",
-        'href' => route('patient.create')
-]
+@extends('layouts.adminlte2', [
+    'title' => "Consultas",
+    'header' => "Consultas Agendadas",
 ])
 
 @push('scripts')
@@ -58,33 +54,33 @@
                 <table class="table table-hover text-nowrap">
                     <thead>
                     <tr>
-                        <th>Nome</th>
-                        <th>Telefone</th>
-                        <th>CPF</th>
-                        <th>Tipo Sanguíneo</th>
-                        <th>Plano</th>
+                        <th>Médico(a)</th>
+                        <th>Tipo de Consulta</th>
+                        <th>Paciente</th>
+                        <th>Início</th>
+                        <th>Fim</th>
+                        <th>Valor Final</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($patients as $patient)
+                    @foreach($surgeries as $surgery)
                         <tr>
-                            <td>{{$patient->name}}</td>
-                            <td>{{$patient->phone}}</td>
-                            <td>{{$patient->cpf}}</td>
-                            <td>{{$patient->blood_type}}</td>
-                            <td>{{\App\Models\HealthPlan::find($patient->health_plan_id)->name}}</td>
+                            <td>{{\App\Models\Doctor::find($surgery->doctor_id)->name}}</td>
+                            <td>{{\App\Models\Specialty::find($surgery->specialty_id)->name}}</td>
+                            <td>{{\App\Models\Patient::find($surgery->patient_id)->name}}</td>
+                            <td>{{$surgery->start}}</td>
+                            <td>{{$surgery->end}}</td>
+                            <td>{{$surgery->value}}</td>
                             <td>
-                                <a class="btn btn-primary" href="{{route('patient.show', $patient->id)}}">
+
+                                <a class="btn btn-primary" href="">
                                     <i class="fa fa-eye"></i>
                                 </a>
 
-                                <a class="btn btn-warning" href="{{route('patient.edit', $patient->id)}}">
+                                <a class="btn btn-warning" href="">
                                     <i class="fa fa-edit"></i>
                                 </a>
 
-                                <button onclick="fillModal('patient/{{$patient->id}}')" class="btn btn-danger" data-bs-toggle="modal" data-toggle="modal" data-target="#destroyModal">
-                                    <i class="fa fa-trash"></i>
-                                </button>
                             </td>
                         </tr>
                     @endforeach

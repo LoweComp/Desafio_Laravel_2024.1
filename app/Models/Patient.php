@@ -24,6 +24,6 @@ class Patient extends Authenticatable
 
     public function healthplan()
     {
-        return $this->hasOne(HealthPlan::class);
+        return $this->belongsTo(HealthPlan::class, 'health_plan_id');
     }
 }

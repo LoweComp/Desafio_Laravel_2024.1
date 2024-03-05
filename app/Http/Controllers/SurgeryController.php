@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Surgery;
 use App\Models\Doctor;
 use App\Models\Patient;
+use App\Models\Specialty;
+use App\Models\HealthPlan;
+use Illuminate\Support\Facades\Auth;
 
 class SurgeryController extends Controller
 {
@@ -14,7 +17,22 @@ class SurgeryController extends Controller
      */
     public function index()
     {
-        //
+        $patients = Auth::guard('patient')->user();
+        $patientId = Auth::guard('patient')->id();
+        $surgeries = Surgery::where('patient_id', $patientId)->get();
+        $specialties = Specialty::all();
+        $doctors = Doctor::all();
+        return view('surgery.index', compact('patients', 'surgeries', 'specialties', 'doctors'));
+    }
+
+    public function indexDOC()
+    {
+        $doctors = Auth::guard('doctor')->user();
+        $doctorId = Auth::guard('doctor')->id();
+        $surgeries = Surgery::where('doctor_id', $doctorId)->get();
+        $specialties = Specialty::all();
+        $patients = Patient::all();
+        return view('surgery.indexDOC', compact('patients', 'surgeries', 'specialties', 'doctors'));
     }
 
     /**
@@ -22,7 +40,11 @@ class SurgeryController extends Controller
      */
     public function create()
     {
-        //
+        $patientId = Auth::guard('patient')->id();
+        $specialties = Specialty::all();
+        $doctors = Doctor::all();
+        $healthplans = HealthPlan::all();
+        return view('surgery.create', compact('patientId', 'specialties', 'doctors', 'healthplans'));
     }
 
     /**
@@ -30,7 +52,20 @@ class SurgeryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'specialty_id' => 'required|exists:specialties,id',
+            'doctor_id' => 'required|exists:doctors,id',
+        ]);
+
+        Surgery::create([
+            'start' => $request->start,
+            'value' => $request->value,
+            'patient_id' => Auth::guard('patient')->id(),
+            'doctor_id' => $request->doctor_id,
+            'specialty_id' => $request->specialty_id,
+        ]);
+
+        return redirect()->route('surgery.index')->with('success', 'Consulta criada com sucesso!');
     }
 
     /**
@@ -64,6 +99,6 @@ class SurgeryController extends Controller
     {
         $surgery = Surgery::findOrFail($id);
         $surgery->delete();
-        return redirect(route('patient.index'))->with('success', 'Cirurgia excluída com sucesso!');
+        return redirect(route('patient.dashboard'))->with('success', 'Cirurgia excluída com sucesso!');
     }
 }

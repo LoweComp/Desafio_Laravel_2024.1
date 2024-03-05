@@ -6,6 +6,7 @@ use App\Models\HealthPlan;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class PatientController extends Controller
 {
@@ -84,6 +85,13 @@ class PatientController extends Controller
         return view('patient.edit', compact('patient', 'healthplans'));
     }
 
+    public function editByID()
+    {
+        $patient = Auth::guard('patient')->user();
+        $healthplans = HealthPlan::all();
+        return view('patient.editByID', ['healthPlans' => $healthplans, 'patient' => $patient]);
+    }
+
     /**
      * Update the specified resource in storage.
      */
@@ -120,6 +128,31 @@ class PatientController extends Controller
         ]);
 
         return redirect(route('patient.index'));
+    }
+
+    public function updateByID(Request $request, string $id)
+    {
+        $validatedData = $request->validate([
+            'photo' => 'nullable',
+            'health_plan_id' => 'required|exists:health_plans,id',
+        ]);
+
+        $patient = Patient::find($id);
+        $patient->update([
+            'name' => $request->input('name'),
+            'email' => $request->email,
+            'password' => $request->password ? Hash::make($request->password) : $patient->password,
+            'birth_date' => $request->birth_date,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'cpf' => $request->cpf,
+            /*'photo' => $request->photo ? $request->photo->store('photos', 'public') : $patient->photo,*/
+            'photo' => $request->photo,
+            'blood_type' => $request->blood_type,
+            'health_plan_id' => $request->health_plan_id
+        ]);
+
+        return redirect(route('patient.dashboard'));
     }
 
     /**

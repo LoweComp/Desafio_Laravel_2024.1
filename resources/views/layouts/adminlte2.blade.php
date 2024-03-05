@@ -141,7 +141,7 @@
 
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link {{Request::is('doctor.dashboard') ? '' : '' }}">
+                        <a href="{{route('pdf.index')}}" class="nav-link {{Request::is('doctor.dashboard') ? '' : '' }}">
                             <i class="nav-icon fas fa-route"></i>
                             <p>
                                 Relatório
@@ -153,9 +153,9 @@
 
                     <li class="nav-item">
                         <a href="#" class="nav-link {{Request::is('doctor.dashboard') ? '' : '' }}">
-                            <i class="nav-icon fas fa-user"></i>
+                            <i class="nav-icon fa fa-edit"></i>
                             <p>
-                                Cirurgias
+                                Consultas
                                 <!--<span class="right badge badge-danger">New</span>-->
                             </p>
                         </a>
