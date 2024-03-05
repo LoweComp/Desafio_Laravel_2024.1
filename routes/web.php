@@ -52,7 +52,7 @@ Route::middleware('doctor')->group(function () {
     Route::get('/dashboardDoctor', function () {
         return view('doctor.dashboard');
     })->name('doctor.dashboard');
-    Route::get('/surgery/indexDOC', [\App\Http\Controllers\SurgeryController::class, 'indexDOC'])->name('surgery.indexDOC');
+    Route::get('/indexDOC', [\App\Http\Controllers\SurgeryController::class, 'indexDOC'])->name('surgery.indexDOC');
     Route::get('/pdf', [\App\Http\Controllers\PDFController::class, 'index'])->name('pdf.index');
 });
 
